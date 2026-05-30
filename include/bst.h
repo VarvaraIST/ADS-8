@@ -82,7 +82,8 @@ class BST {
     }
 
     int search(const T& key) const {
-        return search(root, key) != nullptr;
+        Node* node = search(root, key);
+        return node ? node->count : 0;
     }
 
     void insert(const T& key) {
