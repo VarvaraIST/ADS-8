@@ -81,7 +81,7 @@ class BST {
         return node ? node->count : 0;
     }
 
-    bool search(const T& key) const {
+    int search(const T& key) const {
         return search(root, key) != nullptr;
     }
 
