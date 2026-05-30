@@ -57,7 +57,7 @@ class BST {
     }
 
     int depth(Node* node) const {
-        if (node == nullptr) return 0;
+        if (node == nullptr) return -1;
         return 1 + std::max(depth(node->left), depth(node->right));
     }
 
