@@ -4,6 +4,7 @@
 
 #include <algorithm>
 #include <string>
+#include <utility>
 #include <vector>
 
 template<typename T>
@@ -14,7 +15,7 @@ class BST {
         int count;
         Node* left;
         Node* right;
-        Node(const T& k) : key(k), count(1), left(nullptr), right(nullptr) {}
+        explicit Node(const T& k) : key(k), count(1), left(nullptr), right(nullptr) {}
     };
 
     Node* root;
@@ -75,6 +76,15 @@ class BST {
         clear(root);
     }
 
+    int getFrequency(const T& key) const {
+        Node* node = search(root, key);
+        return node ? node->count : 0;
+    }
+
+    bool search(const T& key) const {
+        return search(root, key) != nullptr;
+    }
+
     void insert(const T& key) {
         bool inserted = false;
         root = insert(root, key, inserted);
@@ -82,16 +92,6 @@ class BST {
             nodeCount++;
         }
     }
-
-    bool search(const T& key) const {
-        return search(root, key) != nullptr;
-    }
-
-    int getFrequency(const T& key) const {
-        Node* node = search(root, key);
-        return node ? node->count : 0;
-    }
-
     int depth() const {
         return depth(root);
     }
@@ -109,7 +109,6 @@ class BST {
                 const std::pair<std::string, int>& b) {
                     return a.second > b.second;
             });
-
         return nodes;
     }
 };
